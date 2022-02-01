@@ -8,8 +8,8 @@ using MovieStoreWebApi.Models;
 
 namespace MovieStoreWebApi.Migrations
 {
-    [DbContext(typeof(MovieDbContext))]
-    [Migration("20220201000459_InitialMigration")]
+    [DbContext(typeof(MovieStoreDbContext))]
+    [Migration("20220201141432_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,6 +65,7 @@ namespace MovieStoreWebApi.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Alias")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 

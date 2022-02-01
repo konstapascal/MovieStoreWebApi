@@ -7,8 +7,8 @@ using MovieStoreWebApi.Models;
 
 namespace MovieStoreWebApi.Migrations
 {
-    [DbContext(typeof(MovieDbContext))]
-    partial class MovieDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(MovieStoreDbContext))]
+    partial class MovieStoreDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -63,6 +63,7 @@ namespace MovieStoreWebApi.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Alias")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 

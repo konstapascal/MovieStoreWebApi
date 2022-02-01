@@ -14,6 +14,7 @@ namespace MovieStoreWebApi.Models.Domain
         [MaxLength(50)]
         public string FullName { get; set; }
 
+        [Required]
         [MaxLength(50)]
         public string Alias { get; set; }
 

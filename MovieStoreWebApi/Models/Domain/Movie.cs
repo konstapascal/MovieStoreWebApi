@@ -33,7 +33,7 @@ namespace MovieStoreWebApi.Models.Domain
         public int FranchiseId { get; set; }
         public Franchise Franchise { get; set; }
 
-        // 1 Movie has many Characters
+        // 1 Movie can have many Characters
         public ICollection<Character> Characters { get; set; }
     }
 }
