@@ -10,7 +10,7 @@ using MovieStoreWebApi.Models.Domain;
 
 namespace MovieStoreWebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/characters")]
     [ApiController]
     public class CharactersController : ControllerBase
     {
@@ -21,14 +21,14 @@ namespace MovieStoreWebApi.Controllers
             _context = context;
         }
 
-        // GET: api/Characters
+        // GET: api/characters
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Character>>> GetCharacters()
         {
             return await _context.Characters.ToListAsync();
         }
 
-        // GET: api/Characters/5
+        // GET: api/characters/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Character>> GetCharacter(int id)
         {
@@ -42,7 +42,7 @@ namespace MovieStoreWebApi.Controllers
             return character;
         }
 
-        // PUT: api/Characters/5
+        // PUT: api/characters/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCharacter(int id, Character character)
@@ -73,7 +73,7 @@ namespace MovieStoreWebApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Characters
+        // POST: api/characters
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Character>> PostCharacter(Character character)
@@ -84,7 +84,7 @@ namespace MovieStoreWebApi.Controllers
             return CreatedAtAction("GetCharacter", new { id = character.Id }, character);
         }
 
-        // DELETE: api/Characters/5
+        // DELETE: api/characters/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCharacter(int id)
         {

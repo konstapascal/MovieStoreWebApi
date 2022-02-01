@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MovieStoreWebApi.Models.Domain;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MovieStoreWebApi.Models
 {
@@ -12,15 +13,16 @@ namespace MovieStoreWebApi.Models
         public DbSet<Character> Characters { get; set; }
         public DbSet<Franchise> Franchises { get; set; }
 
+        public MovieStoreDbContext(DbContextOptions options) : base(options)
+        {
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // string source = "ND-5CG9030M9M\\SQLEXPRESS";
             string source = "DESKTOP-P7G8DHC\\SQLEXPRESS";
 
-            optionsBuilder.UseSqlServer(
-                $"Data Source = {source};" +
-                $"Initial Catalog = MovieStore;" +
-                $"Integrated Security = True;");
+            optionsBuilder.UseSqlServer($"Data Source={source};Initial Catalog=MovieStore;Integrated Security=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

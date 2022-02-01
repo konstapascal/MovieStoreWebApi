@@ -10,7 +10,7 @@ using MovieStoreWebApi.Models.Domain;
 
 namespace MovieStoreWebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/movies")]
     [ApiController]
     public class MoviesController : ControllerBase
     {
@@ -21,14 +21,14 @@ namespace MovieStoreWebApi.Controllers
             _context = context;
         }
 
-        // GET: api/Movies
+        // GET: api/movies
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Movie>>> GetMovies()
         {
             return await _context.Movies.ToListAsync();
         }
 
-        // GET: api/Movies/5
+        // GET: api/movies/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Movie>> GetMovie(int id)
         {
@@ -42,7 +42,7 @@ namespace MovieStoreWebApi.Controllers
             return movie;
         }
 
-        // PUT: api/Movies/5
+        // PUT: api/movies/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutMovie(int id, Movie movie)
@@ -73,7 +73,7 @@ namespace MovieStoreWebApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Movies
+        // POST: api/movies
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Movie>> PostMovie(Movie movie)
@@ -84,7 +84,7 @@ namespace MovieStoreWebApi.Controllers
             return CreatedAtAction("GetMovie", new { id = movie.Id }, movie);
         }
 
-        // DELETE: api/Movies/5
+        // DELETE: api/movies/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMovie(int id)
         {

@@ -10,7 +10,7 @@ using MovieStoreWebApi.Models.Domain;
 
 namespace MovieStoreWebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/franchises")]
     [ApiController]
     public class FranchisesController : ControllerBase
     {
@@ -21,14 +21,14 @@ namespace MovieStoreWebApi.Controllers
             _context = context;
         }
 
-        // GET: api/Franchises
+        // GET: api/franchises
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Franchise>>> GetFranchises()
         {
             return await _context.Franchises.ToListAsync();
         }
 
-        // GET: api/Franchises/5
+        // GET: api/franchises/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Franchise>> GetFranchise(int id)
         {
@@ -42,7 +42,7 @@ namespace MovieStoreWebApi.Controllers
             return franchise;
         }
 
-        // PUT: api/Franchises/5
+        // PUT: api/franchises/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFranchise(int id, Franchise franchise)
@@ -73,7 +73,7 @@ namespace MovieStoreWebApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Franchises
+        // POST: api/franchises
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Franchise>> PostFranchise(Franchise franchise)
@@ -84,7 +84,7 @@ namespace MovieStoreWebApi.Controllers
             return CreatedAtAction("GetFranchise", new { id = franchise.Id }, franchise);
         }
 
-        // DELETE: api/Franchises/5
+        // DELETE: api/franchises/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFranchise(int id)
         {
