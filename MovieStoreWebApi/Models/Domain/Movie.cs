@@ -23,10 +23,10 @@ namespace MovieStoreWebApi.Models.Domain
         [MaxLength(50)]
         public string Director { get; set; }
 
-        [MaxLength(100)]
+        [MaxLength(500)]
         public string ImageUrl { get; set; }
 
-        [MaxLength(100)]
+        [MaxLength(500)]
         public string TrailerUrl { get; set; }
 
         // 1 Movie belongs to 1 Franchise

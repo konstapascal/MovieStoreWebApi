@@ -20,7 +20,7 @@ namespace MovieStoreWebApi.Models.Domain
         [MaxLength(50)]
         public string Gender { get; set; }
 
-        [MaxLength(100)]
+        [MaxLength(500)]
         public string ImageUrl { get; set; }
 
         // 1 Character can play in many Movies
