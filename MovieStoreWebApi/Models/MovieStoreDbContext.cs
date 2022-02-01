@@ -17,14 +17,6 @@ namespace MovieStoreWebApi.Models
         {
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            // string source = "ND-5CG9030M9M\\SQLEXPRESS";
-            string source = "DESKTOP-P7G8DHC\\SQLEXPRESS";
-
-            optionsBuilder.UseSqlServer($"Data Source={source};Initial Catalog=MovieStore;Integrated Security=True;");
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Seeding data into the database
