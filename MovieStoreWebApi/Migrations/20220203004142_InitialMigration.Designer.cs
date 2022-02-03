@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MovieStoreWebApi.Models;
+using MovieStoreWebApi.Data;
 
 namespace MovieStoreWebApi.Migrations
 {
     [DbContext(typeof(MovieStoreDbContext))]
-    [Migration("20220201141432_InitialMigration")]
+    [Migration("20220203004142_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

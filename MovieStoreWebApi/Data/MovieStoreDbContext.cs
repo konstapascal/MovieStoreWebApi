@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MovieStoreWebApi.Models.Domain;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
-namespace MovieStoreWebApi.Models
+namespace MovieStoreWebApi.Data
 {
     // Database
     public class MovieStoreDbContext : DbContext
