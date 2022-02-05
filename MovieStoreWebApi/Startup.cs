@@ -32,9 +32,14 @@ namespace MovieStoreWebApi
         {
             services.AddControllers();
 
+            // Injecting AutoMapper
+            services.AddAutoMapper(typeof(Startup));
+
+            // Injecting DB context
 			services.AddDbContext<MovieStoreDbContext>(options =>
 				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            // Injecting entity repositories
             services.AddScoped<ICharacterRepository, CharacterRepository>();
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IFranchiseRepository, FranchiseRepository>();
