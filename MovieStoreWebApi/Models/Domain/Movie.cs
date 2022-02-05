@@ -30,7 +30,7 @@ namespace MovieStoreWebApi.Models.Domain
         public string TrailerUrl { get; set; }
 
         // 1 Movie belongs to 1 Franchise
-        public int FranchiseId { get; set; }
+        public int? FranchiseId { get; set; }
         public Franchise Franchise { get; set; }
 
         // 1 Movie can have many Characters

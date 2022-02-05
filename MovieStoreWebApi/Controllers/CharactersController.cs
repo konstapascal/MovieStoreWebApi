@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieStoreWebApi.Data;
+using MovieStoreWebApi.Interfaces;
 using MovieStoreWebApi.Models;
 using MovieStoreWebApi.Models.Domain;
 
@@ -15,95 +16,58 @@ namespace MovieStoreWebApi.Controllers
     [ApiController]
     public class CharactersController : ControllerBase
     {
-        private readonly MovieStoreDbContext _context;
+        private readonly ICharacterRepository _repository;
 
-        public CharactersController(MovieStoreDbContext context)
+        public CharactersController(ICharacterRepository repository, MovieStoreDbContext context)
         {
-            _context = context;
-        }
-
-        // GET: api/characters
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Character>>> GetCharacters()
-        {
-            return await _context.Characters.ToListAsync();
+            _repository = repository;
         }
 
         // GET: api/characters/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Character>> GetCharacter(int id)
         {
-            var character = await _context.Characters.FindAsync(id);
+            Character character = await _repository.GetAsync(id);
 
-            if (character == null)
-            {
-                return NotFound();
-            }
-
+            if (character is null) return NotFound();
+            
             return character;
         }
-
-        // PUT: api/characters/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCharacter(int id, Character character)
+        
+        // GET: api/characters
+        [HttpGet]
+        public async Task<IEnumerable<Character>> GetCharacters()
         {
-            if (id != character.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(character).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CharacterExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/characters
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Character>> PostCharacter(Character character)
-        {
-            _context.Characters.Add(character);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetCharacter", new { id = character.Id }, character);
+            IEnumerable<Character> characters = await _repository.GetAllAsync();
+            
+            return characters;
         }
 
         // DELETE: api/characters/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCharacter(int id)
         {
-            var character = await _context.Characters.FindAsync(id);
-            if (character == null) 
-            {
-                return NotFound();
-            }
+            var character = await _repository.GetAsync(id);
 
-            _context.Characters.Remove(character);
-            await _context.SaveChangesAsync();
+            if (character == null) return NotFound();
+
+            await _repository.DeleteAsync(character);
 
             return NoContent();
         }
 
-        private bool CharacterExists(int id)
+        // POST: api/characters
+        [HttpPost]
+        public Task<Character> PostCharacter(Character character)
         {
-            return _context.Characters.Any(e => e.Id == id);
+            throw new NotImplementedException();
+        }
+
+        // PUT: api/characters/5
+        [HttpPut("{id}")]
+        public Task<IActionResult> PutCharacter(int id, Character character)
+        {
+            throw new NotImplementedException();
         }
     }
 }

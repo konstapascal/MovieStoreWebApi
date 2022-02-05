@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieStoreWebApi.Data;
 
 namespace MovieStoreWebApi.Migrations
 {
     [DbContext(typeof(MovieStoreDbContext))]
-    partial class MovieStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220204210510_MoreSeedData")]
+    partial class MoreSeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -164,7 +166,7 @@ namespace MovieStoreWebApi.Migrations
                             Id = 7,
                             Alias = "Thorongil",
                             FullName = "Aragorn II Elessar",
-                            Gender = "Male",
+                            Gender = "Man",
                             ImageUrl = "https://static.wikia.nocookie.net/lotr/images/b/b6/Aragorn_profile.jpg/revision/latest?cb=20170121121423"
                         },
                         new
@@ -172,7 +174,7 @@ namespace MovieStoreWebApi.Migrations
                             Id = 8,
                             Alias = "Old Greybeard",
                             FullName = "Gandalf",
-                            Gender = "Male",
+                            Gender = "Man",
                             ImageUrl = "https://static.wikia.nocookie.net/lotr/images/e/e7/Gandalf_the_Grey.jpg/revision/latest/scale-to-width-down/952?cb=20121110131754"
                         });
                 });
@@ -339,7 +341,7 @@ namespace MovieStoreWebApi.Migrations
                             Director = "James Gunn",
                             FranchiseId = 3,
                             Genre = "Adventure, Action, Superhero",
-                            ImageUrl = "https://upload.wikimedia.org/wikipedia/en/0/06/The_Suicide_Squad_%28film%29_poster.jpg",
+                            ImageUrl = "https://en.wikipedia.org/wiki/The_Suicide_Squad_(film)#/media/File:The_Suicide_Squad_(film)_poster.jpg",
                             ReleaseYear = 2021,
                             Title = "The Suicide Squad",
                             TrailerUrl = "https://www.youtube.com/watch?v=JuDLepNa7hw"

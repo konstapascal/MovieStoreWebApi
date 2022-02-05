@@ -1,6 +1,8 @@
-﻿namespace MovieStoreWebApi.Interfaces
+﻿using MovieStoreWebApi.Models.Domain;
+
+namespace MovieStoreWebApi.Interfaces
 {
-	public interface IMovieRepository
+	public interface IMovieRepository : IGenericRepository<Movie>
 	{
 	}
 }

@@ -48,7 +48,7 @@ namespace MovieStoreWebApi.Migrations
                     Director = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     ImageUrl = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     TrailerUrl = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    FranchiseId = table.Column<int>(type: "int", nullable: false)
+                    FranchiseId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -58,7 +58,7 @@ namespace MovieStoreWebApi.Migrations
                         column: x => x.FranchiseId,
                         principalTable: "Franchise",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
