@@ -14,9 +14,9 @@ namespace MovieStoreWebApi.Interfaces
 		public Task DeleteFranchiseAsync(int id);
 
 		// Additional functionality
+		public Task<IEnumerable<Movie>> GetAllMoviesInFranchise(int id);
+		public Task<IEnumerable<Character>> GetAllCharactersInFranchise(int id);
 		public Task UpdateMoviesInFranchise(int id, int[] movieIds);
-		public Task<List<Movie>> GetAllMoviesInFranchise(int id);
-		public Task<List<Character>> GetAllCharactersInFranchise(int id);
 
 		// Utility functionality
 		public bool FranchiseExists(int id);

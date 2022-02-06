@@ -14,8 +14,8 @@ namespace MovieStoreWebApi.Interfaces
 		public Task DeleteMovieAsync(int id);
 
 		// Additional functionality
+		public Task<IEnumerable<Character>> GetAllCharactersInMovie(int id);
 		public Task UpdateCharactersInMovie(int id, int[] characterIds);
-		public Task<List<Character>> GetAllCharactersInMovie(int id);
 
 		// Utility functionality
 		public bool MovieExists(int id);

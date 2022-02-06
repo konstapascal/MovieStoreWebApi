@@ -36,11 +36,10 @@ namespace MovieStoreWebApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<FranchiseReadDTO>> GetFranchise(int id)
         {
-            var franchise = await _repository.GetSpecificFranchiseAsync(id);
-
-            if (franchise == null)
+            if (!_repository.FranchiseExists(id))
                 return NotFound();
 
+            var franchise = await _repository.GetSpecificFranchiseAsync(id);
             var dtoFranchise = _mapper.Map<FranchiseReadDTO>(franchise);
 
             return dtoFranchise;
@@ -83,7 +82,6 @@ namespace MovieStoreWebApi.Controllers
         public async Task<ActionResult<Franchise>> AddFranchise(FranchiseCreateDTO dtoFranchise)
         {
             var domainFranchise = _mapper.Map<Franchise>(dtoFranchise);
-
             domainFranchise = await _repository.AddFranchiseAsync(domainFranchise);
 
             return CreatedAtAction("GetFranchise",

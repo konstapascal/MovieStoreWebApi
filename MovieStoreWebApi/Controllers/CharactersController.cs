@@ -31,11 +31,10 @@ namespace MovieStoreWebApi.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<CharacterReadDTO>> GetCharacter(int id)
         {
-            var character = await _repository.GetSpecificCharacterAsync(id);
-
-            if (character == null)
+            if (!_repository.CharacterExists(id))
                 return NotFound();
-            
+
+            var character = await _repository.GetSpecificCharacterAsync(id);
             var dtoCharacter = _mapper.Map<CharacterReadDTO>(character);
             
             return dtoCharacter;
@@ -56,10 +55,9 @@ namespace MovieStoreWebApi.Controllers
         public async Task<ActionResult<Character>> PostCharacter(CharacterCreateDTO dtoCharacter)
         {
             var domainCharacter = _mapper.Map<Character>(dtoCharacter);
-
             domainCharacter = await _repository.AddCharacterAsync(domainCharacter);
 
-            return CreatedAtAction("GetCharacter",
+            return CreatedAtAction("PostCharacter",
                 new { id = domainCharacter.Id },
                 _mapper.Map<CharacterReadDTO>(domainCharacter));
         }

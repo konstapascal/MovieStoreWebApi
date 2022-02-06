@@ -23,7 +23,6 @@ namespace MovieStoreWebApi.Data
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Seeding data into the database
-
             modelBuilder.Entity<Character>().HasData(new Character() { Id = 1, FullName = "Peter Parker", Alias = "Spider-Man", Gender = "Male",
                 ImageUrl = "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/4/48/Spider-Man_No_Way_Home_poster_011_Textless.jpg/revision/latest?cb=20220120195924" });
             modelBuilder.Entity<Character>().HasData(new Character() { Id = 2, FullName = "Carol Susan Jane Danvers", Alias = "Captain Marvel", Gender = "Female",
@@ -82,7 +81,6 @@ namespace MovieStoreWebApi.Data
             // Characters and movies have a many to many relationship
             // Character and movies have a one to many relationship
             // Movie and characters have a one to many relationship
-
             modelBuilder.Entity<Character>()
 				.HasMany(c => c.Movies)
 				.WithMany(m => m.Characters)

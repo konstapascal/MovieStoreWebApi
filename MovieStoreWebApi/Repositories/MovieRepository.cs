@@ -53,7 +53,7 @@ namespace MovieStoreWebApi.Repositories
 				.FirstOrDefaultAsync(movie => movie.Id == id);
 		}
 		
-		public async Task<List<Character>> GetAllCharactersInMovie(int id)
+		public async Task<IEnumerable<Character>> GetAllCharactersInMovie(int id)
 		{
 			var movie = await _context.Movies
 				.Include(movie => movie.Characters)
