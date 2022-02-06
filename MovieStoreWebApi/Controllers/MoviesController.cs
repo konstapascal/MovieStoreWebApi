@@ -28,11 +28,10 @@ namespace MovieStoreWebApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<MovieReadDTO>> GetMovie(int id)
         {
-            var movie = await _repository.GetSpecificMovieAsync(id);
-
-            if (movie == null)
+            if (!_repository.MovieExists(id))
                 return NotFound();
 
+            var movie = await _repository.GetSpecificMovieAsync(id);
             var dtoMovie = _mapper.Map<MovieReadDTO>(movie);
 
             return dtoMovie;
@@ -47,11 +46,22 @@ namespace MovieStoreWebApi.Controllers
             return dtoMovies;
         }
 
+        [HttpGet("{id}/characters")]
+        public async Task<ActionResult<IEnumerable<MovieCharacterDTO>>> GetMovieCharacters(int id)
+		{
+            if (!_repository.MovieExists(id))
+                return NotFound();
+
+            var movieCharacters = await _repository.GetAllCharactersInMovie(id);
+            var dtoMovieCharacters = _mapper.Map<List<MovieCharacterDTO>>(movieCharacters);
+
+            return dtoMovieCharacters;
+		}
+
         [HttpPost]
         public async Task<ActionResult<Movie>> AddMovie(MovieCreateDTO dtoMovie)
         {
             var domainMovie = _mapper.Map<Movie>(dtoMovie);
-
             domainMovie = await _repository.AddMovieAsync(domainMovie);
 
             return CreatedAtAction("GetMovie",
@@ -68,7 +78,6 @@ namespace MovieStoreWebApi.Controllers
             await _repository.DeleteMovieAsync(id);
 
             return NoContent();
-
         }
 
         [HttpPut("{id}")]
@@ -82,6 +91,17 @@ namespace MovieStoreWebApi.Controllers
 
             Movie domainMovie = _mapper.Map<Movie>(dtoMovie);
             await _repository.UpdateMovieAsync(domainMovie);
+
+            return NoContent();
+        }
+
+        [HttpPut("{id}/characters")]
+        public async Task<IActionResult> UpdateMovieCharacters(int id, int[] characterIds)
+        {
+            if (!_repository.MovieExists(id))
+                return NotFound();
+
+            await _repository.UpdateCharactersInMovie(id, characterIds);
 
             return NoContent();
         }

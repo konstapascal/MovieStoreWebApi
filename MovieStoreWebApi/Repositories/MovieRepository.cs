@@ -34,7 +34,6 @@ namespace MovieStoreWebApi.Repositories
 		public async Task DeleteMovieAsync(int id)
 		{
 			var movie = await _context.Movies.FindAsync(id);
-
 			_context.Movies.Remove(movie);
 
 			await _context.SaveChangesAsync();
@@ -53,6 +52,20 @@ namespace MovieStoreWebApi.Repositories
 				.Include(movie => movie.Characters)
 				.FirstOrDefaultAsync(movie => movie.Id == id);
 		}
+		
+		public async Task<List<Character>> GetAllCharactersInMovie(int id)
+		{
+			var movie = await _context.Movies
+				.Include(movie => movie.Characters)
+				.FirstOrDefaultAsync(movie => movie.Id == id);
+
+			var movieCharacters = new List<Character>();
+
+			foreach (var character in movie.Characters)
+				movieCharacters.Add(character);
+
+			return movieCharacters;
+		}
 
 		public async Task UpdateMovieAsync(Movie movie)
 		{
@@ -60,14 +73,30 @@ namespace MovieStoreWebApi.Repositories
 			await _context.SaveChangesAsync();
 		}
 
-		public Task UpdateCharactersInMovie(int id, int[] characterIds)
+		public async Task UpdateCharactersInMovie(int id, int[] characterIds)
 		{
-			throw new System.NotImplementedException();
-		}
+			// Getting movie with specific id
+			var movie = await _context.Movies
+				.Include(movie => movie.Characters)
+				.FirstOrDefaultAsync(movie => movie.Id == id);
 
-		public Task<List<Character>> GetAllCharactersInMovie(int id)
-		{
-			throw new System.NotImplementedException();
+			var newCharacters = new List<Character>();
+
+			// Creating the new list of characters
+			foreach (var characterId in characterIds)
+			{
+				var character = _context.Characters
+					.Where(character => character.Id == characterId)
+					.FirstOrDefault();
+				
+				newCharacters.Add(character);
+			}
+
+			// Updating the movie with the new characters
+			movie.Characters = newCharacters;
+
+			_context.Entry(movie).State = EntityState.Modified;
+			await _context.SaveChangesAsync();
 		}
 	}
 }
