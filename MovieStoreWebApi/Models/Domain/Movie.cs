@@ -13,13 +13,16 @@ namespace MovieStoreWebApi.Models.Domain
         [Required]
         [MaxLength(50)]
         public string Title { get; set; }
-
+        
+        [Required]
         [MaxLength(50)]
         public string Genre { get; set; }
 
+        [Required]
         [MaxLength(4)]
         public int ReleaseYear { get; set; }
 
+        [Required]
         [MaxLength(50)]
         public string Director { get; set; }
 
@@ -29,11 +32,12 @@ namespace MovieStoreWebApi.Models.Domain
         [MaxLength(500)]
         public string TrailerUrl { get; set; }
 
-        // 1 Movie belongs to 1 Franchise
+        // Relationships
+        // 1 movie can have 1 franchise
         public int? FranchiseId { get; set; }
         public Franchise Franchise { get; set; }
-
-        // 1 Movie can have many Characters
+        
+        // 1 movie can have many characters
         public ICollection<Character> Characters { get; set; }
     }
 }

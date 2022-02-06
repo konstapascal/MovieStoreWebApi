@@ -26,12 +26,12 @@ namespace MovieStoreWebApi.Controllers
             _mapper = mapper;
         }
 
+        [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [HttpGet("{id}")]
         public async Task<ActionResult<CharacterReadDTO>> GetCharacter(int id)
         {
-            var character = await _repository.ReadSpecificCharacterAsync(id);
+            var character = await _repository.GetSpecificCharacterAsync(id);
 
             if (character == null)
                 return NotFound();
@@ -41,19 +41,32 @@ namespace MovieStoreWebApi.Controllers
             return dtoCharacter;
         }
 
-        [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet]
-        public async Task<IEnumerable<CharacterReadDTO>> GetCharacters()
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IEnumerable<CharacterReadDTO>> GetAllCharacters()
         {
-            var characters = await _repository.ReadAllCharactersAsync();
+            var characters = await _repository.GetAllCharactersAsync();
             var dtoCharacters = _mapper.Map<List<CharacterReadDTO>>(characters); 
             
             return dtoCharacters;
         }
+        
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<ActionResult<Character>> PostCharacter(CharacterCreateDTO dtoCharacter)
+        {
+            var domainCharacter = _mapper.Map<Character>(dtoCharacter);
 
+            domainCharacter = await _repository.AddCharacterAsync(domainCharacter);
+
+            return CreatedAtAction("GetCharacter",
+                new { id = domainCharacter.Id },
+                _mapper.Map<CharacterReadDTO>(domainCharacter));
+        }
+
+        [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCharacter(int id)
         {
             if (!_repository.CharacterExists(id))
@@ -65,24 +78,11 @@ namespace MovieStoreWebApi.Controllers
 
         }
 
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [HttpPost]
-        public async Task<ActionResult<Character>> PostCharacter(CharacterCreateDTO dtoCharacter)
-        {
-            var domainCharacter = _mapper.Map<Character>(dtoCharacter);
-
-            domainCharacter = await _repository.CreateCharacterAsync(domainCharacter);
-
-            return CreatedAtAction("GetCharacter",
-                new { id = domainCharacter.Id },
-                _mapper.Map<CharacterReadDTO>(domainCharacter));
-        }
-
+        [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCharacter(int id, CharacterUpdateDTO dtoCharacter)
+        public async Task<IActionResult> UpdateCharacter(int id, CharacterUpdateDTO dtoCharacter)
         {
             if (id != dtoCharacter.Id)
                 return BadRequest();

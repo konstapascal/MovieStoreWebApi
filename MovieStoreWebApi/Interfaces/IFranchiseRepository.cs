@@ -6,11 +6,19 @@ namespace MovieStoreWebApi.Interfaces
 {
 	public interface IFranchiseRepository
 	{
-		public Task<Franchise> ReadSpecificFranchiseAsync(int id);
-		public Task<IEnumerable<Franchise>> ReadAllFranchisesAsync();
-		public Task<Franchise> CreateFranchiseAsync(Franchise franchise);
+		// Basic CRUD functionality
+		public Task<Franchise> GetSpecificFranchiseAsync(int id);
+		public Task<IEnumerable<Franchise>> GetAllFranchisesAsync();
+		public Task<Franchise> AddFranchiseAsync(Franchise franchise);
 		public Task UpdateFranchiseAsync(Franchise franchise);
 		public Task DeleteFranchiseAsync(int id);
+
+		// Additional functionality
+		public Task UpdateMoviesInFranchise(int id, int[] movieIds);
+		public Task<List<Movie>> GetAllMoviesInFranchise(int id);
+		public Task<List<Character>> GetAllCharactersInFranchise(int id);
+
+		// Utility functionality
 		public bool FranchiseExists(int id);
 	}
 }

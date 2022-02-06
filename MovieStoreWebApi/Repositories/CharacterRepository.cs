@@ -23,7 +23,7 @@ namespace MovieStoreWebApi.Repositories
 				.Any(character => character.Id == id);
 		}
 
-		public async Task<Character> CreateCharacterAsync(Character character)
+		public async Task<Character> AddCharacterAsync(Character character)
 		{
 			_context.Characters.Add(character);
 			await _context.SaveChangesAsync();
@@ -40,14 +40,14 @@ namespace MovieStoreWebApi.Repositories
 			await _context.SaveChangesAsync();
 		}
 
-		public async Task<IEnumerable<Character>> ReadAllCharactersAsync()
+		public async Task<IEnumerable<Character>> GetAllCharactersAsync()
 		{
 			return await _context.Characters
 				.Include(character => character.Movies)
 				.ToListAsync();
 		}
 
-		public async Task<Character> ReadSpecificCharacterAsync(int id)
+		public async Task<Character> GetSpecificCharacterAsync(int id)
 		{
 			return await _context.Characters
 				.Include(character => character.Movies)

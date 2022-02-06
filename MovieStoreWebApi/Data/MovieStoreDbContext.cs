@@ -79,9 +79,9 @@ namespace MovieStoreWebApi.Data
                 ImageUrl = "https://upload.wikimedia.org/wikipedia/en/d/d0/Lord_of_the_Rings_-_The_Two_Towers_%282002%29.jpg", 
                 TrailerUrl ="https://www.youtube.com/watch?v=LbfMDwc4azU" });
 
-            // Characters and Movies have many to many relationship
-            // A Character can play in many movies
-            // A Movie can have many Characters
+            // Characters and movies have a many to many relationship
+            // Character and movies have a one to many relationship
+            // Movie and characters have a one to many relationship
 
             modelBuilder.Entity<Character>()
 				.HasMany(c => c.Movies)

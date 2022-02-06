@@ -23,7 +23,7 @@ namespace MovieStoreWebApi.Repositories
 				.Any(movie => movie.Id == id);
 		}
 
-		public async Task<Movie> CreateMovieAsync(Movie movie)
+		public async Task<Movie> AddMovieAsync(Movie movie)
 		{
 			_context.Movies.Add(movie);
 			await _context.SaveChangesAsync();
@@ -40,14 +40,14 @@ namespace MovieStoreWebApi.Repositories
 			await _context.SaveChangesAsync();
 		}
 
-		public async Task<IEnumerable<Movie>> ReadAllMoviesAsync()
+		public async Task<IEnumerable<Movie>> GetAllMoviesAsync()
 		{
 			return await _context.Movies
 				.Include(movie => movie.Characters)
 				.ToListAsync();
 		}
 
-		public async Task<Movie> ReadSpecificMovieAsync(int id)
+		public async Task<Movie> GetSpecificMovieAsync(int id)
 		{
 			return await _context.Movies
 				.Include(movie => movie.Characters)
@@ -58,6 +58,16 @@ namespace MovieStoreWebApi.Repositories
 		{
 			_context.Entry(movie).State = EntityState.Modified;
 			await _context.SaveChangesAsync();
+		}
+
+		public Task UpdateCharactersInMovie(int id, int[] characterIds)
+		{
+			throw new System.NotImplementedException();
+		}
+
+		public Task<List<Character>> GetAllCharactersInMovie(int id)
+		{
+			throw new System.NotImplementedException();
 		}
 	}
 }

@@ -6,11 +6,14 @@ namespace MovieStoreWebApi.Interfaces
 {
 	public interface ICharacterRepository
 	{
-		public Task<Character> ReadSpecificCharacterAsync(int id);
-		public Task<IEnumerable<Character>> ReadAllCharactersAsync();
-		public Task<Character> CreateCharacterAsync(Character character);
+		// Basic CRUD functionality
+		public Task<Character> GetSpecificCharacterAsync(int id);
+		public Task<IEnumerable<Character>> GetAllCharactersAsync();
+		public Task<Character> AddCharacterAsync(Character character);
 		public Task UpdateCharacterAsync(Character character);
 		public Task DeleteCharacterAsync(int id);
+
+		// Utility functionality
 		public bool CharacterExists(int id);
 	}
 }

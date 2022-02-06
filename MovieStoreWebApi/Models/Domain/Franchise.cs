@@ -18,7 +18,8 @@ namespace MovieStoreWebApi.Models.Domain
         [MaxLength(500)]
         public string Description { get; set; }
 
-        // 1 Franchise has many Movies
+        // Relationships
+        // 1 franchise can have many movies
         public ICollection<Movie> Movies { get; set; }
     }
 }

@@ -11,7 +11,10 @@ namespace MovieStoreWebApi.Profiles
 		{
 			// Franchise -> FranchiseReadDTO
 			CreateMap<Franchise, FranchiseReadDTO>()
-					.ForMember(fdto => fdto.Movies, opt => opt.MapFrom(f => f.Movies.Select(m => m.Id).ToList()));
+					.ForMember(franchiseDto => franchiseDto.Movies, opt => opt
+					.MapFrom(franchise => franchise.Movies
+					.Select(movie => movie.Id)
+					.ToList()));
 
 			// FranchiseCreateDTO -> Franchise
 			CreateMap<FranchiseCreateDTO, Franchise>();

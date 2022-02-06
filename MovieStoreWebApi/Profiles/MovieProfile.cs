@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MovieStoreWebApi.Models.Domain;
 using MovieStoreWebApi.Models.DTOs.Character;
+using MovieStoreWebApi.Models.DTOs.Franchise;
 using MovieStoreWebApi.Models.DTOs.Movie;
 using System.Linq;
 
@@ -12,7 +13,13 @@ namespace MovieStoreWebApi.Profiles
 		{
 			// Movie -> MovieReadDTO
 			CreateMap<Movie, MovieReadDTO>()
-				.ForMember(cdto => cdto.Characters, opt => opt.MapFrom(c => c.Characters.Select(c => c.Id).ToList()));
+				.ForMember(movieDto => movieDto.Characters, opt => opt
+				.MapFrom(movie => movie.Characters
+				.Select(character => character.Id)
+				.ToList()));
+
+			// Movie -> FranchiseMovieDTO
+			CreateMap<Movie, FranchiseMovieDTO>();
 
 			// MovieCreateDTO -> Movie
 			CreateMap<MovieCreateDTO, Movie>();

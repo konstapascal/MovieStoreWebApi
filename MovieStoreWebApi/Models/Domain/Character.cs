@@ -18,13 +18,16 @@ namespace MovieStoreWebApi.Models.Domain
         [MaxLength(50)]
         public string Alias { get; set; }
 
+        [Required]
         [MaxLength(50)]
         public string Gender { get; set; }
 
+        [Url]
         [MaxLength(500)]
         public string ImageUrl { get; set; }
 
-        // 1 Character can play in many Movies
+        // Relationships
+        // 1 character can have many movies
         public ICollection<Movie> Movies { get; set; }
     }
 }
