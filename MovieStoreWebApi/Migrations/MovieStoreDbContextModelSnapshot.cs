@@ -99,6 +99,7 @@ namespace MovieStoreWebApi.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Gender")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -233,6 +234,7 @@ namespace MovieStoreWebApi.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Director")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -240,6 +242,7 @@ namespace MovieStoreWebApi.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Genre")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 

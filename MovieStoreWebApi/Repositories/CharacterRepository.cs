@@ -17,6 +17,16 @@ namespace MovieStoreWebApi.Repositories
 			_context = context;
 		}
 
+		/// <summary>
+		/// Checks to see if specific character exists
+		/// </summary>
+		/// <param name="id">The id of the character</param>
+		/// <returns>Returns true or false</returns>
+		public bool CharacterExists(int id)
+		{
+			return _context.Characters
+				.Any(character => character.Id == id);
+		}
 
 		/// <summary>
 		/// Get character with specified id from the table
@@ -75,22 +85,11 @@ namespace MovieStoreWebApi.Repositories
 		/// </summary>
 		/// <param name="character">The character to be modified</param>
 		/// <returns></returns>
-		
 		public async Task UpdateCharacterAsync(Character character)
 		{
 			// Updates character and saves changes
 			_context.Entry(character).State = EntityState.Modified;
 			await _context.SaveChangesAsync();
-		}
-		/// <summary>
-		/// Checks to see if specific character exists
-		/// </summary>
-		/// <param name="id">The id of the character</param>
-		/// <returns>Returns true or false</returns>
-		public bool CharacterExists(int id)
-		{
-			return _context.Characters
-				.Any(character => character.Id == id);
 		}
 	}
 }

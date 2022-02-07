@@ -26,6 +26,11 @@ namespace MovieStoreWebApi.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -40,6 +45,10 @@ namespace MovieStoreWebApi.Controllers
             return dtoCharacter;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IEnumerable<CharacterReadDTO>> GetAllCharacters()
@@ -50,6 +59,11 @@ namespace MovieStoreWebApi.Controllers
             return dtoCharacters;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dtoCharacter"></param>
+        /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<Character>> PostCharacter(CharacterCreateDTO dtoCharacter)
@@ -62,6 +76,11 @@ namespace MovieStoreWebApi.Controllers
                 _mapper.Map<CharacterReadDTO>(domainCharacter));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

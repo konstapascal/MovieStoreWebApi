@@ -3,7 +3,7 @@ using System;
 
 namespace MovieStoreWebApi.Models.DTOs.Character
 {
-	public class CharacterReadDTO
+    public class CharacterReadDTO
 	{
         public string FullName { get; set; }
         public string Alias { get; set; }

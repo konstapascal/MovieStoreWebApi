@@ -19,6 +19,17 @@ namespace MovieStoreWebApi.Repositories
 		}
 
 		/// <summary>
+		/// Check to see if franchise exists
+		/// </summary>
+		/// <param name="id">The id of the franchise to be checked</param>
+		/// <returns>Returns true or false</returns>
+		public bool FranchiseExists(int id)
+		{
+			return _context.Franchises
+				.Any(franchise => franchise.Id == id);
+		}
+
+		/// <summary>
 		/// Get franchise with specified id from the table
 		/// </summary>
 		/// <param name="id">The id of the franchise to be retrieved</param>
@@ -156,17 +167,6 @@ namespace MovieStoreWebApi.Repositories
 
 			_context.Entry(franchise).State = EntityState.Modified;
 			await _context.SaveChangesAsync();
-		}
-		
-		/// <summary>
-		/// Check to see if franchise exists
-		/// </summary>
-		/// <param name="id">The id of the franchise to be checked</param>
-		/// <returns></returns>
-		public bool FranchiseExists(int id)
-		{
-			return _context.Franchises
-				.Any(franchise => franchise.Id == id);
 		}
 	}
 }

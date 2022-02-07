@@ -25,6 +25,11 @@ namespace MovieStoreWebApi.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<MovieReadDTO>> GetMovie(int id)
         {
@@ -37,6 +42,10 @@ namespace MovieStoreWebApi.Controllers
             return dtoMovie;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IEnumerable<MovieReadDTO>> GetAllMovies()
         {
@@ -46,6 +55,11 @@ namespace MovieStoreWebApi.Controllers
             return dtoMovies;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}/characters")]
         public async Task<ActionResult<IEnumerable<MovieCharacterDTO>>> GetMovieCharacters(int id)
 		{
@@ -58,6 +72,11 @@ namespace MovieStoreWebApi.Controllers
             return dtoMovieCharacters;
 		}
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dtoMovie"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult<Movie>> AddMovie(MovieCreateDTO dtoMovie)
         {
@@ -69,6 +88,11 @@ namespace MovieStoreWebApi.Controllers
                 _mapper.Map<MovieReadDTO>(domainMovie));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMovie(int id)
         {
@@ -80,6 +104,12 @@ namespace MovieStoreWebApi.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="dtoMovie"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateMovie(int id, MovieUpdateDTO dtoMovie)
         {
@@ -95,6 +125,12 @@ namespace MovieStoreWebApi.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="characterIds"></param>
+        /// <returns></returns>
         [HttpPut("{id}/characters")]
         public async Task<IActionResult> UpdateMovieCharacters(int id, int[] characterIds)
         {
