@@ -101,9 +101,9 @@ namespace MovieStoreWebApi.Repositories
 		}
 
 		/// <summary>
-		/// 
+		/// Delete a franchise from the table
 		/// </summary>
-		/// <param name="id"></param>
+		/// <param name="id">The id of the franchise to be removed</param>
 		/// <returns></returns>
 		public async Task DeleteFranchiseAsync(int id)
 		{
@@ -119,12 +119,23 @@ namespace MovieStoreWebApi.Repositories
 			await _context.SaveChangesAsync();
 		}
 		 
+		/// <summary>
+		/// Update the fields of a franchise
+		/// </summary>
+		/// <param name="franchise">The franchise to be updated</param>
+		/// <returns></returns>
 		public async Task UpdateFranchiseAsync(Franchise franchise)
 		{
 			_context.Entry(franchise).State = EntityState.Modified;
 			await _context.SaveChangesAsync();
 		}
 		
+		/// <summary>
+		/// Update the movies in a franchise
+		/// </summary>
+		/// <param name="id">The id of the franchise to be updated</param>
+		/// <param name="movieIds">A list of new movie ids to be added to the franchise</param>
+		/// <returns></returns>
 		public async Task UpdateMoviesInFranchise(int id, int[] movieIds)
 		{
 			var franchise = await _context.Franchises
@@ -147,6 +158,11 @@ namespace MovieStoreWebApi.Repositories
 			await _context.SaveChangesAsync();
 		}
 		
+		/// <summary>
+		/// Check to see if franchise exists
+		/// </summary>
+		/// <param name="id">The id of the franchise to be checked</param>
+		/// <returns></returns>
 		public bool FranchiseExists(int id)
 		{
 			return _context.Franchises

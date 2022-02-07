@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net.Mime;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MovieStoreWebApi.Data;
 using MovieStoreWebApi.Interfaces;
-using MovieStoreWebApi.Models;
 using MovieStoreWebApi.Models.Domain;
-using MovieStoreWebApi.Models.DTOs.Character;
 using MovieStoreWebApi.Models.DTOs.Franchise;
-using MovieStoreWebApi.Models.DTOs.Movie;
 
 namespace MovieStoreWebApi.Controllers
 {
