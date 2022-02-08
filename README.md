@@ -1,7 +1,10 @@
 <h1 align="center">Noroff Assignment 2</h1>
+
+<br>
 <p align="center">
-	<img src="https://wpguru.co.uk/wp-content/uploads/2020/04/dotnet-logo.png" width="300">
+	<img src="https://wpguru.co.uk/wp-content/uploads/2020/04/dotnet-logo.png" width="200">
 </p>
+<br>
 
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 <img alt="Version" src="https://img.shields.io/badge/version-0.1-blue.svg?cacheSeconds=2592000" />
