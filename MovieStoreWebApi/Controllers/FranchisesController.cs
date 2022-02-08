@@ -28,10 +28,10 @@ namespace MovieStoreWebApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Get franchise with the specified id from the table
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">The id of the franchise to be retrieved</param>
+        /// <returns>Returns the franchise</returns>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -47,9 +47,9 @@ namespace MovieStoreWebApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Get all franchises from the table
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns an IEnumerable List of all franchises</returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IEnumerable<FranchiseReadDTO>> GetAllFranchises()
@@ -61,10 +61,10 @@ namespace MovieStoreWebApi.Controllers
         }
         
         /// <summary>
-        /// 
+        /// Get all the movies of the specified franchise
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">The id of the franchise to get the movies from</param>
+        /// <returns>Returns an IEnumarable list of movies</returns>
         [HttpGet("{id}/movies")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -80,10 +80,10 @@ namespace MovieStoreWebApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Get all the characters of the specified franchise
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">The id of the franchise to get the characters from</param>
+        /// <returns>Returns an IEnumarable list of characters</returns>
         [HttpGet("{id}/characters")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -99,10 +99,10 @@ namespace MovieStoreWebApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Add the provided franchise to the table
         /// </summary>
-        /// <param name="dtoFranchise"></param>
-        /// <returns></returns>
+        /// <param name="dtoFranchise">The franchise to be added</param>
+        /// <returns>Returns the franchise that was added</returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<Franchise>> AddFranchise(FranchiseCreateDTO dtoFranchise)
@@ -116,9 +116,9 @@ namespace MovieStoreWebApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Delete a specific franchise with id from the table
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">The id of the specific franchise</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -135,10 +135,10 @@ namespace MovieStoreWebApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Updates the fields of the specified franchise
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="dtoFranchise"></param>
+        /// <param name="id">The id of the franchise to be updated</param>
+        /// <param name="dtoFranchise">The new values of the franchise</param>
         /// <returns></returns>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -159,10 +159,10 @@ namespace MovieStoreWebApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Updates the movies of the specified franchise
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="movieIds"></param>
+        /// <param name="id">The id of the franchise to updates the movies of</param>
+        /// <param name="movieIds">A list of ids corresponding to the new movies</param>
         /// <returns></returns>
         [HttpPut("{id}/movies")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

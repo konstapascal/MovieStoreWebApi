@@ -27,10 +27,10 @@ namespace MovieStoreWebApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Get character with the specified id from the table
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">The id of the character to be retrieved</param>
+        /// <returns>Returns the character</returns>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -46,9 +46,9 @@ namespace MovieStoreWebApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Get all characters from the table
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns an IEnumerable List of all characters</returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IEnumerable<CharacterReadDTO>> GetAllCharacters()
@@ -60,10 +60,10 @@ namespace MovieStoreWebApi.Controllers
         }
         
         /// <summary>
-        /// 
+        /// Add the provided character to the table
         /// </summary>
-        /// <param name="dtoCharacter"></param>
-        /// <returns></returns>
+        /// <param name="dtoCharacter">The character to be added</param>
+        /// <returns>Returns the character that was added</returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<Character>> PostCharacter(CharacterCreateDTO dtoCharacter)
@@ -77,9 +77,9 @@ namespace MovieStoreWebApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Delete a specific character with id from the table
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">The id of the specific character</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -96,10 +96,10 @@ namespace MovieStoreWebApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Updates the fields of the specified character
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="dtoCharacter"></param>
+        /// <param name="id">The id of the character to be updated</param>
+        /// <param name="dtoCharacter">The new values of the character</param>
         /// <returns></returns>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

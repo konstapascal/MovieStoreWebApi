@@ -26,10 +26,10 @@ namespace MovieStoreWebApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Get movie with the specified id from the table
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">The id of the movie to be retrieved</param>
+        /// <returns>Returns the movie</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<MovieReadDTO>> GetMovie(int id)
         {
@@ -43,9 +43,9 @@ namespace MovieStoreWebApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Get all movies from the table
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns an IEnumerable List of all movies</returns>
         [HttpGet]
         public async Task<IEnumerable<MovieReadDTO>> GetAllMovies()
         {
@@ -56,10 +56,10 @@ namespace MovieStoreWebApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Get all the characters of the specified movie
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">The id of the movie to get the characters from</param>
+        /// <returns>Returns an IEnumarable list of characters</returns>
         [HttpGet("{id}/characters")]
         public async Task<ActionResult<IEnumerable<MovieCharacterDTO>>> GetMovieCharacters(int id)
 		{
@@ -73,10 +73,10 @@ namespace MovieStoreWebApi.Controllers
 		}
 
         /// <summary>
-        /// 
+        /// Add the provided movie to the table
         /// </summary>
-        /// <param name="dtoMovie"></param>
-        /// <returns></returns>
+        /// <param name="dtoMovie">The movie to be added</param>
+        /// <returns>Returns the movie that was added</returns>
         [HttpPost]
         public async Task<ActionResult<Movie>> AddMovie(MovieCreateDTO dtoMovie)
         {
@@ -89,9 +89,9 @@ namespace MovieStoreWebApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Delete a specific movie with id from the table
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">The id of the specific movie</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMovie(int id)
@@ -105,10 +105,10 @@ namespace MovieStoreWebApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Updates the fields of the specified movie
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="dtoMovie"></param>
+        /// <param name="id">The id of the movie to be updated</param>
+        /// <param name="dtoMovie">The new values of the movie</param>
         /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateMovie(int id, MovieUpdateDTO dtoMovie)
@@ -126,10 +126,10 @@ namespace MovieStoreWebApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Updates the characters of the specified movie
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="characterIds"></param>
+        /// <param name="id">The id of the movie to updates the characters of</param>
+        /// <param name="characterIds">A list of ids corresponding to the new characters</param>
         /// <returns></returns>
         [HttpPut("{id}/characters")]
         public async Task<IActionResult> UpdateMovieCharacters(int id, int[] characterIds)

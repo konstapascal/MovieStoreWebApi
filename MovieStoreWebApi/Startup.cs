@@ -13,7 +13,9 @@ using MovieStoreWebApi.Interfaces;
 using MovieStoreWebApi.Repositories;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace MovieStoreWebApi
@@ -46,7 +48,31 @@ namespace MovieStoreWebApi
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MovieStoreWebApi", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Movie Store Web API",
+                    Version = "v1",
+                    Description = "A simple example ASP.NET Core Web API to track movies, franchises and characters. " +
+                    "Made by Konstantinos Pascal as part of assignment number 3 at Noroff Accelerate.",
+                    TermsOfService = new Uri("https://example.com/terms-of-service"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Konstantinos Pascal",
+                        Email = "konstantinos.pascal@no.experis.com",
+                        Url = new Uri("https://konstapascal.dev"),
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "MIT License",
+                        Url = new Uri("https://opensource.org/licenses/MIT"),
+                    }
+                });
+
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+
+                c.IncludeXmlComments(xmlPath);
             });
         }
 
