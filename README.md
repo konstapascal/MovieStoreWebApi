@@ -1,4 +1,4 @@
-<h1 align="center">Noroff Assignment 2</h1>
+<h1 align="center">Noroff Assignment 3</h1>
 
 <br>
 <p align="center">
@@ -8,12 +8,11 @@
 
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 <img alt="Version" src="https://img.shields.io/badge/version-0.1-blue.svg?cacheSeconds=2592000" />
+<a href="#" target="_blank">
+<img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+</a>
 
-<div href="#" target="_blank">
-	<img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
-</div>
-
-Noroff assignment number 3. REST API written in C#, using the ASP.NET Core Framework and Entity Framework Core. Written by Konstantinos Pascal.
+REST API written in C#, using the ASP.NET Core Framework and Entity Framework Core. Written by Konstantinos Pascal.
 
 ## Table of Contents
 
