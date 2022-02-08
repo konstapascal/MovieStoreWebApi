@@ -12,7 +12,7 @@
 <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
 </a>
 
-REST API written in C#, using the ASP.NET Core Framework and Entity Framework Core. Written by Konstantinos Pascal.
+REST API written in C#, using the ASP.NET Core Framework and Entity Framework Core. Written by Konstantinos Pascal as part of the third assignment.
 
 ## Table of Contents
 
